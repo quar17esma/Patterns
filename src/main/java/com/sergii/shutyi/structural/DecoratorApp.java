@@ -1,6 +1,6 @@
 package com.sergii.shutyi.structural;
 
-public class Decorator {
+public class DecoratorApp {
     public static void main(String[] args) {
         PrintInterface printer = new QuotesDecorator(new LeftBracketDecorator(new RightBracketDecorator(new Printer("hello"))));
         printer.print();
@@ -24,47 +24,54 @@ class Printer implements PrintInterface {
     }
 }
 
-abstract class 
-
-class QuotesDecorator implements PrintInterface {
+abstract class Decorator implements PrintInterface{
     PrintInterface component;
 
-    public QuotesDecorator(PrintInterface component) {
+    public Decorator(PrintInterface component) {
         this.component = component;
+    }
+
+    public void print(){
+        component.print();
+    }
+}
+
+class QuotesDecorator extends Decorator {
+
+    public QuotesDecorator(PrintInterface component) {
+        super(component);
     }
 
     @Override
     public void print() {
         System.out.print("\"");
-        component.print();
+        super.print();
         System.out.print("\"");
     }
 }
 
-class LeftBracketDecorator implements PrintInterface {
-    PrintInterface component;
+class LeftBracketDecorator extends Decorator {
 
     public LeftBracketDecorator(PrintInterface component) {
-        this.component = component;
+        super(component);
     }
 
     @Override
     public void print() {
         System.out.print("[");
-        component.print();
+        super.print();
     }
 }
 
-class RightBracketDecorator implements PrintInterface {
-    PrintInterface component;
+class RightBracketDecorator extends Decorator {
 
     public RightBracketDecorator(PrintInterface component) {
-        this.component = component;
+        super(component);
     }
 
     @Override
     public void print() {
-        component.print();
+        super.print();
         System.out.print("]");
     }
 }

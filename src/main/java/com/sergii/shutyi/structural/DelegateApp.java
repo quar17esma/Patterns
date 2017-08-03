@@ -1,4 +1,4 @@
-package com.sergii.shutyi.behavioral;
+package com.sergii.shutyi.structural;
 
 public class DelegateApp {
     public static void main(String[] args) {
